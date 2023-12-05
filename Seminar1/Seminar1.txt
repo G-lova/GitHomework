@@ -1,0 +1,56 @@
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git> git clone https://github.com/G-lova/Swift.git
+Cloning into 'Swift'...
+remote: Enumerating objects: 28, done.
+remote: Counting objects: 100% (28/28), done.
+remote: Compressing objects: 100% (19/19), done.
+remote: Total 28 (delta 5), reused 24 (delta 2), pack-reused 0
+Receiving objects: 100% (28/28), 10.73 KiB | 406.00 KiB/s, done.
+Resolving deltas: 100% (5/5), done.
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git> cd .\Swift\
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git\Swift> git remote show origin
+  Fetch URL: https://github.com/G-lova/Swift.git
+  Push  URL: https://github.com/G-lova/Swift.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git\Swift> git remote -v
+origin  https://github.com/G-lova/Swift.git (fetch)
+origin  https://github.com/G-lova/Swift.git (push)
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git\Swift> git remote add source https://github.com/G-lova/GitTest.git
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\Git\Swift> git remote -v
+origin  https://github.com/G-lova/Swift.git (fetch)
+origin  https://github.com/G-lova/Swift.git (push)
+source  https://github.com/G-lova/GitTest.git (fetch)
+source  https://github.com/G-lova/GitTest.git (push)
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git push -u source master    
+To https://github.com/G-lova/GitTest.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/G-lova/GitTest.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git pull source master --allow-unrelated-histories
+From https://github.com/G-lova/GitTest
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> source/master
+Merge made by the 'ort' strategy.
+ README.md | 65 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 README.md
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git push -u source master    
+Enumerating objects: 31, done.
+Counting objects: 100% (31/31), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (30/30), 11.03 KiB | 5.51 MiB/s, done.
+Total 30 (delta 6), reused 27 (delta 5), pack-reused 0
+remote: Resolving deltas: 100% (6/6), done.
+To https://github.com/G-lova/GitTest.git
+   596fe24..f68e010  master -> master
+branch 'master' set up to track 'source/master'.
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> 
