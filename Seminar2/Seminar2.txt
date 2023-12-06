@@ -1,0 +1,1199 @@
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift>
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git log   
+commit f68e010a8143551faacfb45f5ccdf2832abe2913 (HEAD -> master, source/master)
+Merge: c0521f5 596fe24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Dec 5 18:59:48 2023 +0300
+
+    Merge branch 'master' of https://github.com/G-lova/GitTest
+
+commit c0521f5c888287b431f078b280b707fbb76abd7e (origin/master, origin/HEAD)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:56:09 2023 +0300
+
+    Delete READme.md
+
+commit 596fe24b4d9e78c7155f85f7fc03b65eca80ed50 (source/main)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:54:58 2023 +0300
+
+    README.md init
+
+commit 9dc27124c712c439edea595e52d6bd7c81cabd4e
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:53:32 2023 +0300
+
+    Initial commit
+
+commit 79a39fc2518095773afdf2ffc4f7c050eaffa5a2
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Mon Dec 4 19:31:50 2023 +0300
+
+    Changes in READme file
+
+commit 7ca30754f903809a10821e9bc076065716bc2c24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Nov 26 19:43:40 2023 +0300
+
+    Seminar6 added
+
+commit ca022fdfacb0fc664f6ebf3734c4e1331fe01832
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Nov 21 19:32:25 2023 +0300
+
+    Seminar5 added
+
+commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Fri Nov 3 15:53:30 2023 +0300
+
+    Seminar4 added
+
+commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Thu Nov 2 14:19:34 2023 +0300
+
+    Seminar3 added
+
+commit 6a25179358e792b9fed98863ca62393cabcbb1de
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Nov 1 13:01:14 2023 +0300
+
+    Seminar2 added
+
+commit 6c067335d231895ff04789a191ec007ece6cbd46
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Oct 29 22:01:17 2023 +0300
+
+    Initial commit
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git diff 6a25179358e792 9e803c8251ddb1
+diff --git a/seminar3/Main.swift b/seminar3/Main.swift
+new file mode 100644
+index 0000000..e70ab7d
+--- /dev/null
++++ b/seminar3/Main.swift
+@@ -0,0 +1,57 @@
++/*
++1. Есть словарь с видами чая и их стоимостью. 
++Есть очередь людей, которые хотят заказать чай 
++(можно представить её в виде массива видов чая, которые хотят заказать).
++Необходимо последовательно выводить в консоль сколько заплатит покупатель 
++(необходимо вывести его номер по порядку, чай, который он заказал, и стоимость).
++*/
++
++let teaPrices = ["Черный чай": 100, "Зеленый чай": 120, "Мятный чай": 80]
++
++let orderQueue = ["Зеленый чай", "Мятный чай", "Черный чай"]
++
++func printOrderInfo(queueNumber: Int, teaType: String, price: Int) {
++    print("Покупатель №\(queueNumber) заказал \(teaType) и заплатил \(price) рублей")
++}
++
++for (index, teaOrder) in orderQueue.enumerated() {
++        printOrderInfo(queueNumber: index+1, teaType: teaOrder, price: teaPrices[teaOrder]!)
++   
++}
++
++/*
++2. Есть массив [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil]. 
++Необходимо создать новый массив, который будет состоять из элементов старого, 
++но не должно быть nil, не должно быть 0 и 4, а также массив должен быть отсортирован по возрастанию.
++*/
++
++let oldArray: [Int?] = [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil]
++
++let filteredArray = oldArray.compactMap { $0 }.filter { $0 != 0 && $0 != 4 }
++
++let newArray = filteredArray.sorted()
++
++print(newArray)
++
++/*
++3. Написать функцию, которая на вход принимает целое число, 
++а возвращает массив, который сформирован по следующим правилам: 
++количество элементов соответствует переданному числу, массив начинается с 1, 
++каждый последующий элемент больше предыдущего в 2 раза.
++*/
++
++func generateArray(_ count: Int) -> [Int] {
++    var result: [Int] = []
++    
++    var i: Int = 1
++    for _ in 1...count {
++        result.append(i)
++        i = i * 2
++    }
++    
++    return result
++    
++    var i: Int = 1
++    for _ in 1...count {
++        result.append(i)
++        i = i * 2
++    }
++    
++    return result
++}
++
++let number = 5
++let newArray = generateArray(number)
++print(newArray)
+\ No newline at end of file
+diff --git a/seminar4/Main.swift b/seminar4/Main.swift
+new file mode 100644
+index 0000000..38a10fe
+--- /dev/null
++++ b/seminar4/Main.swift
+@@ -0,0 +1,114 @@
++/*
++1. Создать перечисление с видами пиццы (хотя бы 4 - 5 кейсов)
++
++2. Создать структуру пиццы, она должна содержать стоимость, вид пиццы, толстое или тонкое тесто 
++и добавки (например, дополнительно добавить пепперони, помидоры, сыр). 
++Вид пиццы должен быть вложенным типом для структуры пиццы. 
++Подсказка: добавки лучше также сделать перечислением.
++*/
++
++struct Pizza {
++    enum PizzaType {
++        case margherita
++        case pepperoni
++        case hawaiian
++        case capricciosa
++        case fourCheese
++    }
++    enum Adds {
++        case pepperoni
++        case tomatoes
++        case cheese
++    }
++    
++    var price: Double
++    var type: PizzaType
++    var isThick: Bool
++    var adds: [Adds]
++}
++
++/*
++3. Создать класс пиццерии, добавить массив с возможными пиццами. 
++Переменная с массивом должна быть приватной. Массив задается в инициализаторе.
++*/
++
++class PizzaShop {
++    private var pizzas: [Pizza] = []
++    
++    init() {
++        let margheritaPizza = Pizza(price: 9.99, type: .margherita, isThick: false, adds: [.cheese])
++        let pepperoniPizza = Pizza(price: 11.99, type: .pepperoni, isThick: true, adds: [.cheese, .pepperoni])
++        let hawaiianPizza = Pizza(price: 12.99, type: .hawaiian, isThick: true, adds: [.cheese, .tomatoes])
++        let capricciosaPizza = Pizza(price: 13.99, type: .capricciosa, isThick: true, adds: [.cheese, .tomatoes, .pepperoni])
++        let fourCheesePizza = Pizza(price: 14.99, type: .fourCheese, isThick: false, adds: [.cheese])
++        
++        pizzas = [margheritaPizza, pepperoniPizza, hawaiianPizza, capricciosaPizza, fourCheesePizza]
++    }
++
++    /*
++    4. Написать в классе пиццерии функции для добавления новой пиццы и для получения всех доступных пицц.
++    */
++
++    func addPizza(pizza: Pizza) {
++        pizzas.append(pizza)
++    }
++    
++    func getAllPizzas() -> [Pizza] {
++        return pizzas
++    }
++}
++
++/*
++5. Создать экземпляр класса пиццерии и добавить в него несколько пицц.
++*/
++
++let pizzaShop = PizzaShop()
++let pizzas = pizzaShop.getAllPizzas()
++print(pizzas)
++
++let newPizza = Pizza(price: 15.99, type: .margherita, isThick: false, adds: [.cheese, .tomatoes])
++pizzaShop.addPizza(pizza: newPizza)
++
++let updatedPizzas = pizzaShop.getAllPizzas()
++print()
++print(updatedPizzas)
++
++/*
++6. Написать функцию, которая будет решать квадратное уравнение. 
++На вход функция получает коэффициенты a, b, c, d (ax^2 + bx+ c = d), а возвращает корни уравнения.
++*/
++
++func QuadraticEquation(a: Double, b: Double, c: Double, d: Double) -> (Double, Double?)? {
++    // Если a равно нулю, то решаем, как линейное уравнение
++    if a == 0 {
++        guard b != 0 else {
++            return nil
++        }
++        return ((d - c) / b, nil)
++    }
++    
++    // Вычисляем дискриминант
++    let discriminant = b * b - 4 * a * (c - d)
++    
++    // Проверяем, что дискриминант >= 0
++    guard discriminant >= 0 else {
++        return nil
++    }
++    
++    // Вычисляем корни уравнения
++    let x1 = (-b - sqrt(discriminant)) / (2 * a)
++    let x2 = (-b + sqrt(discriminant)) / (2 * a)
++    
++    return (x1, x2)
++}
++ 
++let coefficients = (-1.0, 2.0, 1.0, 0.0)
++if let roots = QuadraticEquation(a: coefficients.0, b: coefficients.1, c: coefficients.2, d: coefficients.3) {
++    if let root1 = roots.1 {
++        print("Корни уравнения: \(roots.0), \(root1)")
++    } else {
++        print("Корень уравнения: \(roots.0)")
++    }
++} else {
++    print("Уравнение не имеет решений")
++}
+\ No newline at end of file
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> cd .\seminar3\
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git blame Main.swift
+
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  1) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  2) 1. Есть словарь с видами чая и их стоимостью.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  3) Есть очередь людей, которые хотят заказать чай
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  4) (можно представить её в виде массива видов чая, которые хотят заказать).      
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  5) Необходимо последовательно выводить в консоль сколько заплатит покупатель     
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  6) (необходимо вывести его номер по порядку, чай, который он заказал, и стоимость).
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  7) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  8)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  9) let teaPrices = ["Черный чай": 100, "Зеленый чай": 120, "Мятный чай": 80]     
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 10)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 11) let orderQueue = ["Зеленый чай", "Мятный чай", "Черный чай"]
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 12)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 13) func printOrderInfo(queueNumber: Int, teaType: String, price: Int) {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 14)     print("Покупатель №\(queueNumber) заказал \(teaType) и заплатил \(price) рублей")
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 15) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 16)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 17) for (index, teaOrder) in orderQueue.enumerated() {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 18)         printOrderInfo(queueNumber: index+1, teaType: teaOrder, price: teaPrices[teaOrder]!)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 19)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 20) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 21)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 22) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 23) 2. Есть массив [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil].
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 24) Необходимо создать новый массив, который будет состоять из элементов старого, 
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 25) но не должно быть nil, не должно быть 0 и 4, а также массив должен быть отсортирован по возрастанию.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 26) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 27)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 28) let oldArray: [Int?] = [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil]
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 29)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 30) let filteredArray = oldArray.compactMap { $0 }.filter { $0 != 0 && $0 != 4 }  
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 31)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 32) let newArray = filteredArray.sorted()
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 33)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 34) print(newArray)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 35)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 36) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 37) 3. Написать функцию, которая на вход принимает целое число,
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 38) а возвращает массив, который сформирован по следующим правилам:
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 39) количество элементов соответствует переданному числу, массив начинается с 1,  
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 40) каждый последующий элемент больше предыдущего в 2 раза.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 41) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 42)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 43) func generateArray(_ count: Int) -> [Int] {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 44)     var result: [Int] = []
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 45)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 46)     var i: Int = 1
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 47)     for _ in 1...count {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 14)     print("Покупатель №\(queueNumber) заказал \(teaType) и заплатил \(price) рублей")
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 15) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 16)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 17) for (index, teaOrder) in orderQueue.enumerated() {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 18)         printOrderInfo(queueNumber: index+1, teaType: teaOrder, price: teaPrices[teaOrder]!)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 19)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 20) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  3) Есть очередь людей, которые хотят заказать чай
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  4) (можно представить её в виде массива видов чая, которые хотят заказать).      
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  5) Необходимо последовательно выводить в консоль сколько заплатит покупатель     
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  6) (необходимо вывести его номер по порядку, чай, который он заказал, и стоимость).
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  7) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  8)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  9) let teaPrices = ["Черный чай": 100, "Зеленый чай": 120, "Мятный чай": 80]     
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git blame Main.swift
+
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  1) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  2) 1. Есть словарь с видами чая и их стоимостью.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  3) Есть очередь людей, которые хотят заказать чай
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  4) (можно представить её в виде массива видов чая, которые хотят заказать).      
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  5) Необходимо последовательно выводить в консоль сколько заплатит покупатель     
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  6) (необходимо вывести его номер по порядку, чай, который он заказал, и стоимость).
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  7) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  8)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300  9) let teaPrices = ["Черный чай": 100, "Зеленый чай": 120, "Мятный чай": 80]     
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 10)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 11) let orderQueue = ["Зеленый чай", "Мятный чай", "Черный чай"]
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 12)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 13) func printOrderInfo(queueNumber: Int, teaType: String, price: Int) {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 14)     print("Покупатель №\(queueNumber) заказал \(teaType) и заплатил \(price) рублей")
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 15) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 16)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 17) for (index, teaOrder) in orderQueue.enumerated() {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 18)         printOrderInfo(queueNumber: index+1, teaType: teaOrder, price: teaPrices[teaOrder]!)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 19)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 20) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 21)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 22) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 23) 2. Есть массив [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil].
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 24) Необходимо создать новый массив, который будет состоять из элементов старого, 
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 25) но не должно быть nil, не должно быть 0 и 4, а также массив должен быть отсортирован по возрастанию.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 26) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 27)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 28) let oldArray: [Int?] = [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 1
+5, 0, nil]
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 29)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 30) let filteredArray = oldArray.compactMap { $0 }.filter { $0 != 0 && $0 != 4 }  
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 31)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 32) let newArray = filteredArray.sorted()
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 33)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 34) print(newArray)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 35)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 36) /*
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 37) 3. Написать функцию, которая на вход принимает целое число,
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 38) а возвращает массив, который сформирован по следующим правилам:
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 39) количество элементов соответствует переданному числу, массив начинается с 1,  
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 40) каждый последующий элемент больше предыдущего в 2 раза.
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 41) */
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 42)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 43) func generateArray(_ count: Int) -> [Int] {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 44)     var result: [Int] = []
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 45)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 46)     var i: Int = 1
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 47)     for _ in 1...count {
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 48)         result.append(i)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 49)         i = i * 2
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 50)     }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 51)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 52)     return result
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 53) }
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 54)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 55) let number = 5
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 56) let newArray = generateArray(number)
+9eeb7268 (Lyubov Gavrilova 2023-11-02 14:19:34 +0300 57) print(newArray)
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git checkout -b seminar2
+Switched to a new branch 'seminar2'
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git revert 9eeb7268 
+hint: Waiting for your editor to close the file... dos2unix: converting file E:/Обучение/!Программирование/GeekBrains/3.2. Контроль версий углублённо (GIT) (лекции)/GitTest/Swift/.git/COMMIT_EDITMSG to Unix format...
+[seminar2 ffa69ad] Revert "Seminar3 added" by task 1 in seminar 2 homework
+ 1 file changed, 57 deletions(-)
+ delete mode 100644 seminar3/Main.swift
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git log
+commit ffa69adcc080eef667e6937f6132389600c95fbe (HEAD -> seminar2)
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 11:44:14 2023 +0300
+
+    Revert "Seminar3 added" by task 1 in seminar 2 homework
+
+    This reverts commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046.
+
+commit f68e010a8143551faacfb45f5ccdf2832abe2913 (source/master, master)
+Merge: c0521f5 596fe24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Dec 5 18:59:48 2023 +0300
+
+    Merge branch 'master' of https://github.com/G-lova/GitTest
+
+commit c0521f5c888287b431f078b280b707fbb76abd7e (origin/master, origin/HEAD)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:56:09 2023 +0300
+
+    Delete READme.md
+
+commit 596fe24b4d9e78c7155f85f7fc03b65eca80ed50 (source/main)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:54:58 2023 +0300
+
+    README.md init
+
+commit 9dc27124c712c439edea595e52d6bd7c81cabd4e
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:53:32 2023 +0300
+
+    Initial commit
+
+commit 79a39fc2518095773afdf2ffc4f7c050eaffa5a2
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Mon Dec 4 19:31:50 2023 +0300
+
+    Changes in READme file
+
+commit 7ca30754f903809a10821e9bc076065716bc2c24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Nov 26 19:43:40 2023 +0300
+
+    Seminar6 added
+
+commit ca022fdfacb0fc664f6ebf3734c4e1331fe01832
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Nov 21 19:32:25 2023 +0300
+
+    Seminar5 added
+
+commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Fri Nov 3 15:53:30 2023 +0300
+
+    Seminar4 added
+
+commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Thu Nov 2 14:19:34 2023 +0300
+
+    Seminar3 added
+
+commit 6a25179358e792b9fed98863ca62393cabcbb1de
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Nov 1 13:01:14 2023 +0300
+
+    Seminar2 added
+
+commit 6c067335d231895ff04789a191ec007ece6cbd46
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Oct 29 22:01:17 2023 +0300
+
+    Initial commit
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> git diff 6a25179358e792 ffa69adcc080ee
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..24bfed2
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,65 @@
++
++# Семинар 1:
++1. Вывести в консоль все чётные числа от 0 до 100, включая 0.
++2. Создать две переменных: одна равна 7, другая 20.
++Если результат перемножения этих переменных больше 10, то вывести в консоль первую переменную, в противном случае вывести вторую.     
++3. Создайте переменную “k”, равную 9. В диапазоне от 10 до 50, но только по нечётным числам, если текущее число плюс “k” — чётное, то 
+увеличьте “k” на 2, в противном случае выведите в консоль “Next” и перейдите к следующей итерации.
++4. Создайте переменную “k”, равную 9. В диапазоне от 10 до 50, но только по нечётным числам, если текущее число плюс “k” — чётное, то 
+увеличьте “k” на 1, в противном случае выведите в консоль “Next” прекратите выполнение цикла.
++
++# Семинар 2:
++1. Написать функцию, которая на вход принимает число: 
++сумма, которую пользователь хочет положить на вклад, 
++следующий аргумент это годовой процент, 
++третий аргумент это срок Функция возвращает сколько денег получит пользователь по итогу.
++2. Создать перечисление, которое содержит 3 вида пиццы и создать переменные с каждым видом пиццы.
++3. Добавить возможность получения названия пиццы через rawValue
++
++# Семинар 3:
++1. Есть словарь с видами чая и их стоимостью. 
++Есть очередь людей, которые хотят заказать чай 
++(можно представить её в виде массива видов чая, которые хотят заказать).
++Необходимо последовательно выводить в консоль сколько заплатит покупатель 
++(необходимо вывести его номер по порядку, чай, который он заказал, и стоимость).
++2. Есть массив [-4, 5, 10, nil, 4, nil, 25, 0, nil, 16, 75, -20, -7, 15, 0, nil]. 
++Необходимо создать новый массив, который будет состоять из элементов старого, 
++но не должно быть nil, не должно быть 0 и 4, а также массив должен быть отсортирован по возрастанию.
++3. Написать функцию, которая на вход принимает целое число, 
++а возвращает массив, который сформирован по следующим правилам: 
++количество элементов соответствует переданному числу, массив начинается с 1, 
++каждый последующий элемент больше предыдущего в 2 раза.
++
++# Семинар 4:
++1. Создать перечисление с видами пиццы (хотя бы 4 - 5 кейсов)
++2. Создать структуру пиццы, она должна содержать стоимость, вид пиццы, толстое или тонкое тесто 
++и добавки (например, дополнительно добавить пепперони, помидоры, сыр). 
++Вид пиццы должен быть вложенным типом для структуры пиццы. 
++Подсказка: добавки лучше также сделать перечислением.
++3. Создать класс пиццерии, добавить массив с возможными пиццами. 
++Переменная с массивом должна быть приватной. Массив задается в инициализаторе.
++4. Написать в классе пиццерии функции для добавления новой пиццы и для получения всех доступных пицц.
++5. Создать экземпляр класса пиццерии и добавить в него несколько пицц.
++6. Написать функцию, которая будет решать квадратное уравнение. 
++На вход функция получает коэффициенты a, b, c, d (ax^2 + bx+ c = d), а возвращает корни уравнения.
++
++# Семинар 5:
++
++1. Необходимо создать структуру картошки фри, в которой будет стоимость и размер картошки 
++и сделать так, чтобы в классе пиццерии была одна переменная, 
++в которую можно было бы класть и пиццу, и картошку фри.
++2. Добавьте в класс пиццерии функцию, которая будет добавлять новую позицию в меню.
++3. Создайте протокол, в котором будут содержаться функции открытия и закрытия.
++4. Написать расширение для класса пиццерии, в котором будет реализован протокол из пункта 3.
++5. Написать функцию, в которой происходит вычитание одного числа из другого. 
++Функция должна работать и с Int, и с Double.Функция должна возвращать результат вычитания.
++
++# Семинар 6:
++1. Создать структуру работника пиццерии. В ней должны быть такие свойства, 
++как имя, зарплата и должность. Должностей пока может быть две: или кассир, или повар. 
++Добавить в класс пиццерии массив с работниками
++2. Создать класс столика, в нем должны быть свойство, в котором содержится количество мест 
++и функция, которая на вход принимает количество гостей, которое хотят посадить, 
++а возвращает true, если места хватает и false, если места не хватает. 
++Изначальное количество мест задается в инициализаторе
++3. Добавить в класс пиццерии свойство, в котором хранится массив столиков. 
++У класса столика добавить свойство, в котором хранится пиццерия, в которой стоит столик. 
++Столики создаются сразу в инициализаторе, не передаются туда в качестве параметра
+diff --git a/seminar4/Main.swift b/seminar4/Main.swift
+new file mode 100644
+index 0000000..38a10fe
+--- /dev/null
++++ b/seminar4/Main.swift
+@@ -0,0 +1,114 @@
++/*
++1. Создать перечисление с видами пиццы (хотя бы 4 - 5 кейсов)
++
++2. Создать структуру пиццы, она должна содержать стоимость, вид пиццы, толстое или тонкое тесто 
++и добавки (например, дополнительно добавить пепперони, помидоры, сыр). 
++Вид пиццы должен быть вложенным типом для структуры пиццы. 
++Подсказка: добавки лучше также сделать перечислением.
++*/
++
++struct Pizza {
++    enum PizzaType {
++        case margherita
++        case pepperoni
++        case hawaiian
++        case capricciosa
++        case fourCheese
++    }
++    enum Adds {
++        case pepperoni
++        case tomatoes
++        case cheese
++    }
++    
++    var price: Double
++    var type: PizzaType
++    var isThick: Bool
++    var adds: [Adds]
++}
++
++/*
++3. Создать класс пиццерии, добавить массив с возможными пиццами. 
++Переменная с массивом должна быть приватной. Массив задается в инициализаторе.
++*/
++
++class PizzaShop {
++    private var pizzas: [Pizza] = []
++    
++    init() {
++        let margheritaPizza = Pizza(price: 9.99, type: .margherita, isThick: false, adds: [.cheese])
++        let pepperoniPizza = Pizza(price: 11.99, type: .pepperoni, isThick: true, adds: [.cheese, .pepperoni])
++        let hawaiianPizza = Pizza(price: 12.99, type: .hawaiian, isThick: true, adds: [.cheese, .tomatoes])
++        let capricciosaPizza = Pizza(price: 13.99, type: .capricciosa, isThick: true, adds: [.cheese, .tomatoes, .pepperoni])
++        let fourCheesePizza = Pizza(price: 14.99, type: .fourCheese, isThick: false, adds: [.cheese])
++        
++        pizzas = [margheritaPizza, pepperoniPizza, hawaiianPizza, capricciosaPizza, fourCheesePizza]
++    }
++
++    /*
++    4. Написать в классе пиццерии функции для добавления новой пиццы и для получения всех доступных пицц.
++    */
++
++    func addPizza(pizza: Pizza) {
++        pizzas.append(pizza)
++    }
++    
++    func getAllPizzas() -> [Pizza] {
++        return pizzas
++    }
++}
++
++/*
++5. Создать экземпляр класса пиццерии и добавить в него несколько пицц.
++*/
++
++let pizzaShop = PizzaShop()
++let pizzas = pizzaShop.getAllPizzas()
++print(pizzas)
++
++let newPizza = Pizza(price: 15.99, type: .margherita, isThick: false, adds: [.cheese, .tomatoes])
++pizzaShop.addPizza(pizza: newPizza)
++
++let updatedPizzas = pizzaShop.getAllPizzas()
++print()
++print(updatedPizzas)
++
++/*
++6. Написать функцию, которая будет решать квадратное уравнение. 
++На вход функция получает коэффициенты a, b, c, d (ax^2 + bx+ c = d), а возвращает корни уравнения.
++*/
++
++func QuadraticEquation(a: Double, b: Double, c: Double, d: Double) -> (Double, Double?)? {
++    // Если a равно нулю, то решаем, как линейное уравнение
++    if a == 0 {
++        guard b != 0 else {
++            return nil
++        }
++        return ((d - c) / b, nil)
++    }
++    
++    // Вычисляем дискриминант
++    let discriminant = b * b - 4 * a * (c - d)
++    
++    // Проверяем, что дискриминант >= 0
++    guard discriminant >= 0 else {
++        return nil
++    }
++    
++    // Вычисляем корни уравнения
++    let x1 = (-b - sqrt(discriminant)) / (2 * a)
++    let x2 = (-b + sqrt(discriminant)) / (2 * a)
++    
++    return (x1, x2)
++}
++ 
++let coefficients = (-1.0, 2.0, 1.0, 0.0)
++if let roots = QuadraticEquation(a: coefficients.0, b: coefficients.1, c: coefficients.2, d: coefficients.3) {
++    if let root1 = roots.1 {
++        print("Корни уравнения: \(roots.0), \(root1)")
++    } else {
++        print("Корень уравнения: \(roots.0)")
++    }
++} else {
++    print("Уравнение не имеет решений")
++}
+\ No newline at end of file
+diff --git a/seminar5/Main.swift b/seminar5/Main.swift
+new file mode 100644
+index 0000000..13552ac
+--- /dev/null
++++ b/seminar5/Main.swift
++}
+\ No newline at end of file
+diff --git a/seminar5/Main.swift b/seminar5/Main.swift
+new file mode 100644
+index 0000000..13552ac
+--- /dev/null
++++ b/seminar5/Main.swift
+@@ -0,0 +1,110 @@
++protocol Menu {
++    var name: String {get}
++    var price: Double {get}
++}
++
++struct Pizza: Menu {
++    var name: String {
++        "Pizza \(self.type)"
++    }
++    enum PizzaType {
++        case margherita
++        case pepperoni
++        case hawaiian
++        case capricciosa
++        case fourCheese
++    }
++    enum Adds {
++        case pepperoni
++        case tomatoes
++        case cheese
++    }
++    
++    var price: Double
++    var type: PizzaType
++    var isThick: Bool
++    var adds: [Adds]
++}
++
++/*
++1. Необходимо создать структуру картошки фри, в которой будет стоимость и размер картошки 
++и сделать так, чтобы в классе пиццерии была одна переменная, 
++в которую можно было бы класть и пиццу, и картошку фри.
++*/
++
++struct FriedPotato: Menu {
++    var name: String {
++        "Fried potato \(self.size)"
++    }
++    var price: Double
++    enum Size {
++        case small
++        case medium
++        case large
++    }
++    var size: Size
++}
++
++/*
++2. Добавьте в класс пиццерии функцию, которая будет добавлять новую позицию в меню.
++*/
++
++class PizzaShop {
++    var menu: [Menu] = []
++
++    func addMenuItem(item: Menu) {
++        menu.append(item)
++    }
++}
++
++/*
++3. Создайте протокол, в котором будут содержаться функции открытия и закрытия.
++*/
++
++protocol OpeningClosing {
++    func open()
++    func close()
++}
++
++/*
++4. Написать расширение для класса пиццерии, в котором будет реализован протокол из пункта 3.
++*/
++
++extension PizzaShop: OpeningClosing {
++    func open() {
++        print("Pizza shop is now open")
++    }
++    
++    func close() {
++        print("Pizza shop is now closed")
++    }
++}
++
++let pizza = Pizza(price: 10.99, type: .margherita, isThick: false, adds: [.cheese])
++let potato = FriedPotato(price: 5.99, size: .large)
++
++let pizzaShop = PizzaShop()
++pizzaShop.addMenuItem(item: pizza)
++pizzaShop.addMenuItem(item: potato)
++
++for item in pizzaShop.menu {
++    if let pizza = item as? Pizza {
++        print("\(pizza.name):, $\(pizza.price)")
++    } else if let potato = item as? FriedPotato {
++        print("\(potato.name), $\(potato.price)")
++    }
++}
++
++pizzaShop.open()
++pizzaShop.close()
++
++/*
++5. Написать функцию, в которой происходит вычитание одного числа из другого. 
++Функция должна работать и с Int, и с Double.Функция должна возвращать результат вычитания.
++*/
++
++func subtraction<T: Numeric>(a:T, b:T) -> T {
++    a - b
++}
++
++print(subtraction(a:5.9, b:3))
+\ No newline at end of file
+diff --git a/seminar6/Main.swift b/seminar6/Main.swift
+new file mode 100644
+index 0000000..9d07f45
+--- /dev/null
++++ b/seminar6/Main.swift
+@@ -0,0 +1,148 @@
++/*
++1. Создать структуру работника пиццерии. В ней должны быть такие свойства, 
++как имя, зарплата и должность. Должностей пока может быть две: или кассир, или повар. 
++Добавить в класс пиццерии массив с работниками
++
++2. Создать класс столика, в нем должны быть свойство, в котором содержится количество мест 
++и функция, которая на вход принимает количество гостей, которое хотят посадить, 
++а возвращает true, если места хватает и false, если места не хватает. 
++Изначальное количество мест задается в инициализаторе
++
++3. Добавить в класс пиццерии свойство, в котором хранится массив столиков. 
++У класса столика добавить свойство, в котором хранится пиццерия, в которой стоит столик. 
++Столики создаются сразу в инициализаторе, не передаются туда в качестве параметра
++*/
++
++protocol Menu {
++    var name: String {get}
++    var price: Double {get}
++}
++
++struct Pizza: Menu {
++    var name: String {
++        "Pizza \(self.type)"
++    }
++    enum PizzaType {
++        case margherita
++        case pepperoni
++        case hawaiian
++        case capricciosa
++        case fourCheese
++    }
++    enum Adds {
++        case pepperoni
++        case tomatoes
++        case cheese
++    }
++    
++    var price: Double
++    var type: PizzaType
++    var isThick: Bool
++    var adds: [Adds]
++}
++
++struct FriedPotato: Menu {
++    var name: String {
++        "Fried potato \(self.size)"
++    }
++    var price: Double
++    enum Size {
++        case small
++        case medium
++        case large
++    }
++    var size: Size
++}
++
++struct Worker {
++  var name: String
++  var salary: Double
++  enum Position {
++    case cashier
++    case cook
++  }
++  var position: Position
++}
++
++class PizzaShop {
++    var menu: [Menu] = []
++    var workers: [Worker] = []
++    var tables: [Table] = []
++
++    init(tables: [Table]) {
++        self.tables = tables
++    }
++
++    func addMenuItem(item: Menu) {
++        menu.append(item)
++    }
++
++    func addWorker(worker: Worker) {
++        workers.append(worker)
++    }
++
++    func getAllMenu() -> [Menu] {
++        return menu
++    }
++
++    func getAllWorkers() -> [Worker] {
++      return workers
++    }
++
++    func isThereTable(guestsNumber: Int) -> Bool {
++        for table in self.tables {
++            if table.isSeatsEnough(guestsNumber: guestsNumber) == true {
++                return true
++                break
++            }
++        }
++        return false
++    }
++}
++
++protocol OpeningClosing {
++    func open()
++    func close()
++}
++
++extension PizzaShop: OpeningClosing {
++    func open() {
++        print("Pizza shop is now open")
++    }
++    
++    func close() {
++        print("Pizza shop is now closed")
++    }
++}
++
++class Table {
++    var seatsNumber: Int
++    var pizzaShop: PizzaShop?
++
++    init(seatsNumber: Int) {
++        self.seatsNumber = seatsNumber
++    }
++
++    func isSeatsEnough(guestsNumber: Int) -> Bool {
++        return guestsNumber <= seatsNumber
++    }
++}
++
++let pizza = Pizza(price: 10.99, type: .margherita, isThick: false, adds: [.cheese])
++let potato = FriedPotato(price: 5.99, size: .large)
++
++let pizzaShop = PizzaShop(tables: [Table(seatsNumber: 4), Table(seatsNumber: 6), Table(seatsNumber: 2)])
++pizzaShop.addMenuItem(item: pizza)
++pizzaShop.addMenuItem(item: potato)
++
++var menu = pizzaShop.getAllMenu()
++for item in menu {
++  print("\(item.name):, $\(item.price)")
++}
++
++pizzaShop.open()
++print(pizzaShop.isThereTable(guestsNumber: 3))
++print(pizzaShop.isThereTable(guestsNumber: 8))
++pizzaShop.close()
++
++
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar3> cd..
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> cd .\seminar4\
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar4> git revert 9e803c8251ddb183e
+hint: Waiting for your editor to close the file... dos2unix: converting file E:/Обучение/!Программирование/GeekBrains/3.2. Контроль версий углублённо (GIT) (лекции)/GitTest/Swift/.git/COMMIT_EDITMSG to Unix format...
+[seminar2 49a6e15] Revert "Seminar4 added" by task 2 in seminar 2 homework
+ 1 file changed, 114 deletions(-)
+ delete mode 100644 seminar4/Main.swift
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar4> cd..
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> cd .\seminar5\
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git revert ca022fdfacb0fc664f6e
+hint: Waiting for your editor to close the file... dos2unix: converting file E:/Обучение/!Программирование/GeekBrains/3.2. Контроль версий углублённо (GIT) (лекции)/GitTest/Swift/.git/COMMIT_EDITMSG to Unix format...
+[seminar2 f5b59ce] Revert "Seminar5 added" by task1 in seminar 2 homework
+ 1 file changed, 110 deletions(-)
+ delete mode 100644 seminar5/Main.swift
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git log
+commit f5b59cec1e6baa2cd6e5daf6a76fec56f57d7071 (HEAD -> seminar2)
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 12:39:53 2023 +0300
+
+    Revert "Seminar5 added" by task1 in seminar 2 homework
+
+    This reverts commit ca022fdfacb0fc664f6ebf3734c4e1331fe01832.
+
+commit 49a6e158ed2ec8823b4fe6ac9551155edc7d1ce3
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 12:38:27 2023 +0300
+
+    Revert "Seminar4 added" by task 2 in seminar 2 homework
+
+    This reverts commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec.
+
+commit ffa69adcc080eef667e6937f6132389600c95fbe
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 11:44:14 2023 +0300
+
+    Revert "Seminar3 added" by task 1 in seminar 2 homework
+
+    This reverts commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046.
+
+commit f68e010a8143551faacfb45f5ccdf2832abe2913 (source/master, master)
+Merge: c0521f5 596fe24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Dec 5 18:59:48 2023 +0300
+
+    Merge branch 'master' of https://github.com/G-lova/GitTest
+
+commit c0521f5c888287b431f078b280b707fbb76abd7e (origin/master, origin/HEAD)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:56:09 2023 +0300
+
+    Delete READme.md
+
+commit 596fe24b4d9e78c7155f85f7fc03b65eca80ed50 (source/main)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:54:58 2023 +0300
+
+    README.md init
+
+commit 9dc27124c712c439edea595e52d6bd7c81cabd4e
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:53:32 2023 +0300
+
+    Initial commit
+
+commit 79a39fc2518095773afdf2ffc4f7c050eaffa5a2
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Mon Dec 4 19:31:50 2023 +0300
+
+    Changes in READme file
+
+commit 7ca30754f903809a10821e9bc076065716bc2c24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Nov 26 19:43:40 2023 +0300
+
+    Seminar6 added
+
+commit ca022fdfacb0fc664f6ebf3734c4e1331fe01832
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Nov 21 19:32:25 2023 +0300
+
+    Seminar5 added
+
+commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Fri Nov 3 15:53:30 2023 +0300
+
+    Seminar4 added
+
+commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Thu Nov 2 14:19:34 2023 +0300
+
+    Seminar3 added
+
+commit 6a25179358e792b9fed98863ca62393cabcbb1de
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Nov 1 13:01:14 2023 +0300
+
+    Seminar2 added
+
+commit 6c067335d231895ff04789a191ec007ece6cbd46
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Oct 29 22:01:17 2023 +0300
+
+    Initial commit
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git reset --soft HEAD^
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git log
+commit 49a6e158ed2ec8823b4fe6ac9551155edc7d1ce3 (HEAD -> seminar2)
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 12:38:27 2023 +0300
+
+    Revert "Seminar4 added" by task 2 in seminar 2 homework
+
+    This reverts commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec.
+
+commit ffa69adcc080eef667e6937f6132389600c95fbe
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Wed Dec 6 11:44:14 2023 +0300
+
+    Revert "Seminar3 added" by task 1 in seminar 2 homework
+
+    This reverts commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046.
+
+commit f68e010a8143551faacfb45f5ccdf2832abe2913 (source/master, master)
+Merge: c0521f5 596fe24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Dec 5 18:59:48 2023 +0300
+
+    Merge branch 'master' of https://github.com/G-lova/GitTest
+
+commit c0521f5c888287b431f078b280b707fbb76abd7e (origin/master, origin/HEAD)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:56:09 2023 +0300
+
+    Delete READme.md
+
+commit 596fe24b4d9e78c7155f85f7fc03b65eca80ed50 (source/main)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:54:58 2023 +0300
+
+    README.md init
+
+commit 9dc27124c712c439edea595e52d6bd7c81cabd4e
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:53:32 2023 +0300
+
+    Initial commit
+
+commit 79a39fc2518095773afdf2ffc4f7c050eaffa5a2
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Mon Dec 4 19:31:50 2023 +0300
+
+    Changes in READme file
+
+commit 7ca30754f903809a10821e9bc076065716bc2c24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Nov 26 19:43:40 2023 +0300
+
+    Seminar6 added
+
+commit ca022fdfacb0fc664f6ebf3734c4e1331fe01832
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Nov 21 19:32:25 2023 +0300
+
+    Seminar5 added
+
+commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Fri Nov 3 15:53:30 2023 +0300
+
+    Seminar4 added
+
+commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Thu Nov 2 14:19:34 2023 +0300
+
+    Seminar3 added
+
+commit 6a25179358e792b9fed98863ca62393cabcbb1de
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+
+    Seminar2 added
+
+commit 6c067335d231895ff04789a191ec007ece6cbd46
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Sun Oct 29 22:01:17 2023 +0300
+
+    Initial commit
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git status
+On branch seminar2
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    Main.swift
+
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git restore --staged
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git status
+On branch seminar2
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    Main.swift
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git restore .       
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git status
+On branch seminar2
+nothing to commit, working tree clean
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> git log
+commit 49a6e158ed2ec8823b4fe6ac9551155edc7d1ce3 (HEAD -> seminar2)
+Date:   Wed Dec 6 12:38:27 2023 +0300
+
+
+    This reverts commit 9e803c8251ddb183e2205d05a314c5f64c4b1aec.
+
+commit ffa69adcc080eef667e6937f6132389600c95fbe
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift\seminar5> cd..
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git reset --mixed HEAD^      
+Unstaged changes after reset:
+D       seminar4/Main.swift
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git log                      
+Date:   Wed Dec 6 11:44:14 2023 +0300
+
+    Revert "Seminar3 added" by task 1 in seminar 2 homework
+
+    This reverts commit 9eeb7268282c7dec1e2bcef1b7cea8c934236046.
+
+commit f68e010a8143551faacfb45f5ccdf2832abe2913 (source/master, master)
+Merge: c0521f5 596fe24
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git restore .
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git status                   
+On branch seminar2
+nothing to commit, working tree clean
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git reset --hard HEAD^       
+HEAD is now at f68e010 Merge branch 'master' of https://github.com/G-lova/GitTest
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git log                      
+Merge: c0521f5 596fe24
+Author: Lyubov Gavrilova <suslik.lyuba@gmail.com>
+Date:   Tue Dec 5 18:59:48 2023 +0300
+
+    Merge branch 'master' of https://github.com/G-lova/GitTest
+
+commit c0521f5c888287b431f078b280b707fbb76abd7e (origin/master, origin/HEAD)
+Author: G-lova <115465246+G-lova@users.noreply.github.com>
+Date:   Tue Dec 5 16:56:09 2023 +0300
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git status                   
+On branch seminar2
+nothing to commit, working tree clean
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift> git push -u source seminar2  
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'seminar2' on GitHub by visiting:
+remote:      https://github.com/G-lova/GitTest/pull/new/seminar2
+remote:
+To https://github.com/G-lova/GitTest.git
+ * [new branch]      seminar2 -> seminar2
+branch 'seminar2' set up to track 'source/seminar2'.
+PS E:\Обучение\!Программирование\GeekBrains\3.2. Контроль версий углублённо (GIT) (лекции)\GitTest\Swift>
